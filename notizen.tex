@@ -3,9 +3,12 @@
 % von Jens Kallup
 %-----------------------------------------------------------------------------%
 \documentclass[10pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
 \usepackage{ngerman}
 \usepackage{titlesec}
 \usepackage{graphicx}
+\usepackage{flowfram}
 \usepackage{tikz}
 \usetikzlibrary{calc}
 \usepackage{textpos}
@@ -14,7 +17,10 @@
 \usetikzlibrary{arrows, decorations.markings}
 \usepackage{fancyhdr} 
 \usepackage{lastpage}
-\usepackage{float} 
+\usepackage{float}
+\usepackage{ifthen}
+\usepackage{changepage}
+\usepackage{ifoddpage}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.9}
 \pagestyle{empty}
@@ -28,7 +34,7 @@
 
 \DeclareFixedFont{\chapternumberfont}{T1}{ppl}{}{}{1.5in}
 \titleformat{\chapter}[display]{\Huge\bfseries\sffamily\color{white}}{
-%%\thispagestyle{empty}
+\thispagestyle{empty}
 \begin{tikzpicture}[overlay, remember picture]
         \path let \p1 = (current page.west), \p2 = (current page.east) in
         node[minimum width=\x2-1.5pt, minimum height=5cm,
@@ -42,6 +48,33 @@
 \end{tikzpicture}
 }{-1.75in}{}[\vspace*{1.25in}]
 
+\newcommand{\pechaback}{
+    \newdynamicframe{2cm}{15cm}{0cm}{0cm}[back]
+    \setdynamiccontents*{back}{
+        \vfil\hfil
+        \begin{tikzpicture}
+            \filldraw[draw=black, fill=orange] (0,0) rectangle (0,0);
+        \end{tikzpicture}}
+       \newflowframe{0cm}{2cm}{0cm}{0cm}[backframe]
+}
+
+\newcommand{\pechafront}{
+    \thispagestyle{empty}
+    \newdynamicframe{21cm}{19cm}{0cm}{0cm}[front]
+    \setdynamiccontents*{front}{
+        \vfil\hfil
+        \begin{tikzpicture}
+            \filldraw[draw=black, fill=orange] (0,0) rectangle +(21.46,1.3);
+        \end{tikzpicture}}
+       \newflowframe{-2.1cm}{-2cm}{0cm}{0cm}[frontframe]
+}
+
+\checkoddpage
+\ifoddpage
+    \pechafront
+\else
+    \pechaback
+\fi
 
 \newcommand\brectangles{%
 \begin{tikzpicture}[overlay, remember picture]
@@ -54,19 +87,38 @@
 
 \newcommand\bildzrange{%
 \begin{tikzpicture}[overlay, remember picture]
-   \node[inner sep=0pt,below right] (image) at ([xshift=-10cm,yshift=-9cm]current page.north east)
-  {\includegraphics[width=7.5cm,height=4.5cm]{zbereiche.jpg}};
+   \node[inner sep=0pt,below right] (image) at ([xshift=-10cm,yshift=-9.1cm]current page.north east)
+  {\includegraphics[width=7.5cm,height=4.1cm]{pics/zbereiche.jpg}};
 \end{tikzpicture}%
 }
 
 \newcommand\legendezbereiche{%
 \begin{tabular}{llc}
- $\mathbb{C}$ & = komplexe Zahl    \\
- $\mathbb{I}$ & = irrationale Zahl \\
- $\mathbb{N}$ & = natürliche Zahl  \\
- $\mathbb{Q}$ & = rationale Zahl   \\
- $\mathbb{R}$ & = reelle Zahl      \\
- $\mathbb{Z}$ & = ganze Zahl       
+ $\mathbb{C}$  & = komplexe Zahl    \\
+ $\mathbb{I}$  & = irrationale Zahl \\
+ $\mathbb{N}$  & = natürliche Zahl  \\
+ $\mathbb{Q}$  & = rationale Zahl   \\
+ $\mathbb{R}$  & = reelle Zahl      \\
+ $\mathbb{Z}$  & = ganze Zahl       \\
+\end{tabular}
+\\
+\\
+\\
+\\
+\begin{tabular}{llc}
+ $ f $         & = Funktion \\
+ $ x $         & = Argument, x-Wert, unabh"angige Variable  \\
+ $ y $         & = Funktionswert, y-Wert, abh"angige Variable  \\
+ $ y = f(x) $  & = Funktionsgleichung, Zuordnungsvorschrift  \\
+ $ f(x) $      & = spricht man ''f von x'' \\
+ $ D \: (oder \: \mathbb{D} ) $ & = Definitionsmenge, Definitionsbereich  \\
+ $ W $         & = Wertemenge, Wertebereich \\
+ & \\
+ $ f(x) = c $  & = konstante Funktion \\
+ $ f(x) = mx + n $ & = lineare Funktion \\
+ $ f(x) = ax^2 + bx + c $ & = quadratische Funktion \\
+ $ f(x) = \frac{a_n x^a_n + a_n -1^{x^{n-1}} + \ldots + a_1 x + a_0}{a_m x^m + b_m -1^{x^{m-1}} + \ldots + b_1 x + b_0} $ &
+ = rationale gebrochene Funktion
 \end{tabular}%
 }
 
@@ -93,7 +145,7 @@
     \node[cvtext,above left] at ([xshift=-1cm,yshift=-9.5cm]current page.north east) {\Huge\bfseries vom \today };
     % cover photo
     \node[inner sep=0pt,below right] (image) at ([xshift=5cm,yshift=-10cm]current page.north west)
-    {\includegraphics[width=11cm,height=9cm]{me.jpg}};
+    {\includegraphics[width=11cm,height=9cm]{pics/me.jpg}};
     % name and address
     \node[fill=white,drop shadow,align=center,text width=6.4cm,inner sep=0.3cm,below] (name) at (image.south)
         {\LARGE Jens Kallup};
@@ -265,10 +317,10 @@ nun wird jedes Glied mit -1 multipliziert: \\
   \begin{array}{l}
    1 * -1 = -1 \\
    1 * -1 = -1
-  \end{array}}_{\text{= 0, kürzt sich weg}}
+  \end{array}}_{\text{= 0, k"urzt sich weg}}
   \right\} = 1 * -1 = -1 $ \\
 \\
-Ergebnis: $ -1 = 1 = richtig\ ! $ \\
+Ergebnis: $ -1 \mapsto 1 = richtig\ ! $ \\
 
 
 \chapter{Mengen}
@@ -303,6 +355,110 @@ Mengen k"onnen auf zwei verschiedene weisen dargestellt werden:
 \end{itemize}
 Mengendiagramme sind Diagramme, die Elemente in einer
 geschlossener Umgebung enthalten.
+
+
+\chapter{Funktionen}
+In der realen Welt begegnen uns h"aufig Abh"angigkeiten zwischen
+zwei Gr"o"sen.\\
+Als Beispiel hierf"ur sei die Fl"ache einer geometrischen Grundk"orpers
+ist abh"angig von der Seitenl"ange eines Quadrats, oder bei einen Kreis,
+dessen Radius. \\
+Um die Abh"angigkeiten besser verstehen zu k"onnen, spricht man auch von
+einer Zuordnung eines Wertes zu einen anderen Wert.\\
+\\
+Beispiel:\\
+Der Hefeteig eines Kuchens hat in der ersten Stunde das doppelte Volumen.
+In der zweiten Stunde hat der Teig das doppelte Volumen des Vorg"angers.
+\\
+\\
+Erst wenn wir verstanden haben, was eine Zuordnung ist, k"onnen wir uns
+mit Funktionen n"aher besch"aftigen. Grund daf"ur ist, dass eine Funktion
+nichts anderes als eine Zuordnung mit bestimmten Eigenschaften ist.\\
+Außerdem m"ussen wir unseren mathematischen Wortschatz um einige Vokabeln
+erweitern.
+\\ \\
+\begin{tabular}{p{4cm}p{7cm}}
+  \includegraphics[width=0.3\textwidth]{pics/menge1.jpg} &
+  \vtop{\vskip -64pt \vskip -\ht\strutbox 
+    \begin{tabular}{lp{4cm}}
+      Die linke Mengen wird als Definitions(menge) \\
+      bezeichnet, w"ahrend die rechte Menge als \\
+      Werte(menge) bezeichnet wird.
+    \end{tabular}\vskip -\dp\strutbox }%
+\end{tabular}
+\\
+\begin{tabular}{p{4cm}p{7cm}}
+  \includegraphics[width=0.3\textwidth]{pics/menge3.jpg} &
+  \vtop{\vskip -64pt \vskip -\ht\strutbox 
+    \begin{tabular}{lp{4cm}}
+      Wie wir bereits wissen, besteht zwischen den \\
+      beiden Mengen eine Beziehung. Diese Beziehung \\
+      l"asst sich mit Zuordnungspfeilen verdeutlichen. \\
+      \\
+      $ 1 \mapsto 1 $ \\
+      $ \ldots $ \\
+      $ 4 \mapsto 4 $
+    \end{tabular}\vskip -\dp\strutbox }%
+\end{tabular}
+\\ \\
+\begin{tabular}{p{4cm}p{7cm}}
+  \includegraphics[width=0.3\textwidth]{pics/menge4.jpg} &
+  \vtop{\vskip -64pt \vskip -\ht\strutbox 
+    \begin{tabular}{lp{4cm}}
+      Bei $ f: A \mapsto B $ handelt es sich um eine Funktion, \\
+      da jedem Element x der Menge A genau ein Element \\
+      y der  Menge B zugeordnet ist. 
+    \end{tabular}\vskip -\dp\strutbox }%
+\end{tabular}
+\\
+\begin{tabular}{p{4cm}p{7cm}}
+  \includegraphics[width=0.3\textwidth]{pics/menge5.jpg} &
+  \vtop{\vskip -64pt \vskip -\ht\strutbox 
+    \begin{tabular}{lp{4cm}}
+      Bei $ f: A \mapsto B $ handelt es sich um keine Funktion, \\
+      da dem Element 3 der Menge A zwei Elemente \\
+      (3 und 4) der Menge B zugeordnet sind. 4
+    \end{tabular}\vskip -\dp\strutbox }%
+\end{tabular}
+\\
+\begin{tabular}{p{4cm}p{7cm}}
+  \includegraphics[width=0.3\textwidth]{pics/menge6.jpg} &
+  \vtop{\vskip -79pt \vskip -\ht\strutbox 
+    \begin{tabular}{lp{4cm}}
+    Bei $ f: A \mapsto B $ handelt es sich um eine Funktion, \\
+    da jedem Element x der Menge A genau ein Element y der \\
+    Menge B zugeordnet ist. \\
+    \\
+    Dass sich einem Element aus der Menge B zwei Elemente \\
+    der Menge A zuordnen lassen, spielt keine Rolle. \\
+    Es handelt sich laut Definition trotzdem um eine Funktion.
+    \end{tabular}\vskip -\dp\strutbox }%
+\end{tabular}
+\\
+Die Erkenntnisse aus den obigen Beispielen lassen sich folgendermaßen zusammenfassen:
+Eine Funktion liegt vor, wenn von jedem Element x der linken Menge (Definitionsmenge)
+genau ein Pfeil abgeht.
+Von wie vielen Pfeilen ein Element y der rechten Menge (Wertemenge)
+getroffen wird, spielt dagegen für die Definition einer Funktion keine Rolle. \\
+\\
+\textbf{Bezeichnungen und Schreibweisen}
+\\
+Leider verwenden nicht alle Autoren/Lehrer dieselben Begriffe.
+Es ist deshalb notwendig, dass man die alternativen Bezeichnungen
+im Hinterkopf behält, um Verwirrungen beim Lesen verschiedener Mathematiktexte
+zu vermeiden. \\
+\\
+Zwei Funktionen sind genau dann identisch, wenn sie in folgenden Teilen "ubereinstimmen:\\
+\\
+* Funktionsgleichung \\
+* Definitionsmenge \\
+* Wertemenge \\
+\\
+Demzufolge sind zwei Funktionen mit gleicher Funktionsgleichung, aber verschiedenen Definitionsmengen
+oder verschiedenen Wertemengen, nicht identisch und k"onnen somit unterschiedliche Eigenschaften besitzen. \\
+\\
+\textbf{Beispiele einer Funktion:} \\
+$ y = 2x , \: D = \{ 1, 2, 3 \} , \: W = \{ 2, 4, 8 \} $ \\
 
 
 
