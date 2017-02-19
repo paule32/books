@@ -48,34 +48,6 @@
 \end{tikzpicture}
 }{-1.75in}{}[\vspace*{1.25in}]
 
-\newcommand{\pechaback}{
-    \newdynamicframe{2cm}{15cm}{0cm}{0cm}[back]
-    \setdynamiccontents*{back}{
-        \vfil\hfil
-        \begin{tikzpicture}
-            \filldraw[draw=black, fill=orange] (0,0) rectangle (0,0);
-        \end{tikzpicture}}
-       \newflowframe{0cm}{2cm}{0cm}{0cm}[backframe]
-}
-
-\newcommand{\pechafront}{
-    \thispagestyle{empty}
-    \newdynamicframe{21cm}{19cm}{0cm}{0cm}[front]
-    \setdynamiccontents*{front}{
-        \vfil\hfil
-        \begin{tikzpicture}
-            \filldraw[draw=black, fill=orange] (0,0) rectangle +(21.46,1.3);
-        \end{tikzpicture}}
-       \newflowframe{-2.1cm}{-2cm}{0cm}{0cm}[frontframe]
-}
-
-\checkoddpage
-\ifoddpage
-    \pechafront
-\else
-    \pechaback
-\fi
-
 \newcommand\brectangles{%
 \begin{tikzpicture}[overlay, remember picture]
 \fill[cyan] 
