@@ -1,0 +1,99 @@
+\chapter{Grundlagen - Mathematik}\label{Mathegrundlagen}
+\section{Zahlensysteme}\label{Zahlensysteme}
+In jedem Zahlensystem wird der Wert einer Ziffer durch ihre Stellung
+innerhalb einer Zahl bestimmt. Die Grundlage eines jedem Zahlensystems ist
+seine Basis.
+\\
+\begin{minipage}{1.5\textwidth}
+\begin{tabular}{lrlcl}
+Beispiel:  & m * $b^n$    & m     & = & Ziffernwert \\
+           &              & b     & = & Basis \\
+           &              & n     & = & Exponent \\
+           &              & $b^n$ & = & Zahlenbasis \\
+           &              &       &   & \\
+           & $36_{(10)}$  &       &   & Zahlenbasis : 10 \\
+\end{tabular}
+\end{minipage}
+\\
+Zehner und Einer benennen den Stellenwert.\\
+W"ahlt man dagegen einen andere Zahlenbasis, so "andert sich der Wert betr"achtlich.\\
+\begin{minipage}{1.5\textwidth}
+\begin{tabular}{lrlcrr}
+           & $36_{(10)}$  &       &   &   Zahlenbasis : 16 & \\
+Das egibt: &              &       &   &   $3 * 16^1$ =     & 48 \\
+           &              &       &   & + $6 * 16^0$ =     &  6 \\
+           &              &       &   & = $6 * 16^0$ =     & 54 \\
+\end{tabular}
+\end{minipage}
+
+\subsection{Dualsystem}
+Das duale System entspricht dem bin"aren Aufbau der elektronischen Datenverarbeitunh.
+Es beruht auf der Basis 2 und ben"otigt nur die Ziffern 0 und 1.\\
+
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{llcr}
+Beispiel:  & $10_{(2)}$ & = & $1 * 2^1$ = 2 \\
+           &            & + & $0 * 2^0$ = 0 \\
+           &            &   &           = 2 \\
+\end{tabular}
+\end{minipage}
+
+\section{Umwandlung Dezimal - Dual}
+Im ersten Fall wird die Dezimalzahl so lange durch die Basis 2 geteilt, bis das
+Ergebnis Null erreicht ist. Die Reste der einzelnen Divisionen ergeben die
+Dualzahl. Im zweiten Fall werden die Ziffernwerte mit den Stellenwerten der
+Dualzahl multipliziert. Die Summe der Produkte ergibt die Dezimalzahl.
+\\
+\subsection{Dezimal nach Dual umwandeln}
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{rcrr}
+29 : 2 & = & 14 + Rest 1 & \\
+14 : 2 & = &  7 + Rest 0 & \\
+ 7 : 2 & = &  3 + Rest 1 & \\
+ 3 : 2 & = &  1 + Rest 1 & \\
+ 1 : 2 & = &  0 + Rest 1 &  =  $11101_{(2)}$ \\
+\end{tabular}
+\end{minipage}
+\\
+\subsection{Dual in Dezimalzahl umwandeln}
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{lrrcrl}
+1 1 1 0 1 & = 1 * &  1 & = &  1 & \\
+          &   0 * &  0 & = &  0 & \\
+          &   1 * &  4 & = &  4 & \\
+          &   1 * &  8 & = &  8 & \\
+          &   1 * & 16 & = & 16 &  = $29_{(10)}$ \\
+\end{tabular}
+\end{minipage}
+
+\section{Hexadezimalsystem}
+In diesem System liegt die Basis 16 zu Grunde, d. h. es werden 16 Ziffern ben"otigt.
+Die ersten zehn Ziffern entstammen dem Dezimalsystem, 0 bis 9, die folgenden sechs
+Ziffern werden beginnend mit den ersten Buchstaben des Alphabets bezeichnet, also A bis F. \\
+
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{lcccccccccccccccc}
+dual: & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\
+hex:  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & A  & B  & C  & D  & E  & F
+\end{tabular}
+\end{minipage}
+
+\subsection{Umwandlung Hex nach Dezimal}
+Folgende Hexadezimalzahl ist gegeben: 2AE\\
+\\
+\begin{minipage}{0.5\textwidth}
+\begin{tabular}{lcrccrrl}
+2 & = &  2 & * & $16^2$ & = & $512_{(10)}$ \\
+A & = & 10 & * & $16^1$ & = & $160_{(10)}$ \\
+E & = & 14 & * & $16^0$ & = & $ 14_{(10)}$ &  = $686_{(10)}$ \\
+\end{tabular}
+\end{minipage}
+
+\section{Zeichen und Symbole}
+
+\begin{minipage}{0.5\textwidth}
+  \begin{tabular}{lcr}
+    \legendezbereiche & \\ \\ \bildzrange
+  \end{tabular}
+\end{minipage}
+

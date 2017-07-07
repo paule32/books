@@ -1,0 +1,69 @@
+\titleformat{name=\chapter}[display]{\Huge\bfseries\sffamily\color{white}}{%
+\thispagestyle{empty}
+\begin{tikzpicture}[overlay, remember picture]
+        \path let \p1 = (current page.west), \p2 = (current page.east) in
+        node[minimum width=\x2-1.5pt, minimum height=4cm,
+        rectangle, fill=cyan, anchor=north west, align=left, text width=\x2-\x1] at ($(current page.north west)$) {
+        \begin{textblock*}{5in}(\dimexpr\x2-4.0in,\dimexpr0.25\headheight-1in)
+          \tikz \node [white,text width=2in, align=right, font=\sffamily] {{\normalsize MATHEMATIK }\\[10pt]
+          \raisebox{20pt}{{\large \chaptertitlename}} \raisebox{-12pt}{\chapternumberfont \thechapter}};
+        \end{textblock*}};
+        \path let \p1 = (current page.west), \p2 = (current page.east) in
+              node[minimum width=\x2-\x1, minimum height=-2.8in, rectangle, fill=cyan!50, anchor=south west, align=left, text width=\x2-\x1] at ($(current page.south west)$) {\textcolor{black}{\Large{\thepage . \: \: de.scr.mathematik}}};
+\end{tikzpicture}}{-1.75in}{}[\vspace*{0.25in}]
+
+
+\titleformat{name=\chapter,numberless}[display]{\Huge{\bfseries\sffamily\color{yellow}}}{%
+   \thispagestyle{empty}
+  \begin{tikzpicture}[overlay, remember picture]
+     \path let \p1 = (current page.west), \p2 = (current page.east) in
+     node[minimum width=\x2-1.5pt, minimum height=4cm,
+     rectangle, fill=cyan, anchor=north west, align=left, text width=\x2-\x1] at ($(current page.north west)$) {
+        \begin{textblock*}{5in}(\dimexpr\x2-4.0in,\dimexpr0.25\headheight-1in)
+           \tikz \node [white,text width=2in, align=right, font=\sffamily] {{\normalsize MATHEMATIK }\\[10pt]
+           \raisebox{20pt}{{\large \chaptertitlename}} \raisebox{-12pt}{\chapternumberfont \thechapter}};
+     \end{textblock*}
+  };
+     \fill[cyan](current page.south west) rectangle ($(current page.south east) - (0,-1.5cm)$);
+\end{tikzpicture}}{-1.75in}{}[\vspace*{0.25in}]
+ 
+\titleformat{name=\section}[display]{\Huge{\bfseries\sffamily\color{yellow}}}{%
+   \thispagestyle{empty}
+  \begin{tikzpicture}[overlay, remember picture]
+     \path let \p1 = (current page.west), \p2 = (current page.east) in
+     node[minimum width=\x2-1.5pt, minimum height=4cm,
+     rectangle, fill=cyan, anchor=north west, align=left, text width=\x2-\x1] at ($(current page.north west)$) {
+        \begin{textblock*}{5in}(\dimexpr\x2-4.0in,\dimexpr0.25\headheight-1in)
+           \tikz \node [white,text width=2in, align=right, font=\sffamily]
+           {\normalsize MATHEMATIK }\\[10pt];
+        \end{textblock*}
+  };
+     \fill[cyan](current page.south west) rectangle ($(current page.south east) - (0,-1.5cm)$);
+\end{tikzpicture}}{-1.75in}{}[\vspace*{0.25in}]
+ 
+\titleformat{name=\subsection}{\Huge{\bfseries\sffamily\color{yellow}}}{%
+   \thispagestyle{empty}
+  \begin{tikzpicture}[overlay, remember picture]
+     \path let \p1 = (current page.west), \p2 = (current page.east) in
+     node[minimum width=\x2-1.5pt, minimum height=4cm,
+     rectangle, fill=cyan, anchor=north west, align=left, text width=\x2-\x1] at ($(current page.north west)$) {
+        \begin{textblock*}{5in}(\dimexpr\x2-4.0in,\dimexpr0.25\headheight-1in)
+           \tikz \node [white,text width=2in, align=right, font=\sffamily] {{\normalsize MATHEMATIK }\\[10pt]
+           \raisebox{20pt}{{\large \chaptertitlename}} \raisebox{-12pt}{\chapternumberfont \thechapter}};
+     \end{textblock*}};
+     \fill[cyan](current page.south west) rectangle ($(current page.south east) - (0,-1.5cm)$);
+\end{tikzpicture}}{-1.75in}{}[\vspace*{0.25in}]
+ 
+\titleformat{name=\subsubsection}[display]{\Huge{\bfseries\sffamily\color{yellow}}}{%
+   \thispagestyle{empty}
+  \begin{tikzpicture}[overlay, remember picture]
+     \path let \p1 = (current page.west), \p2 = (current page.east) in
+     node[minimum width=\x2-1.5pt, minimum height=4cm,
+     rectangle, fill=cyan, anchor=north west, align=left, text width=\x2-\x1] at ($(current page.north west)$) {
+        \begin{textblock*}{5in}(\dimexpr\x2-4.0in,\dimexpr0.25\headheight-1in)
+           \tikz \node [white,text width=2in, align=right, font=\sffamily] {{\normalsize MATHEMATIK }\\[10pt]
+           \raisebox{20pt}{{\large \chaptertitlename}} \raisebox{-12pt}{\chapternumberfont \thechapter}};
+     \end{textblock*}};
+     \fill[cyan](current page.south west) rectangle ($(current page.south east) - (0,-1.5cm)$);
+\end{tikzpicture}}{-1.75in}{}[\vspace*{0.25in}]
+
