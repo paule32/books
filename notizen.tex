@@ -2,22 +2,23 @@
 \usepackage[utf8]{inputenc}
 \usepackage{geometry}
 \usepackage{ngerman}
+\usepackage[right]{eurosym}
 \usepackage{titlesec}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{flowfram}
 \usepackage{tikz}
 \usepackage{textpos}
 \usepackage{calc}
 \usepackage{amsmath, amssymb}
-\usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{float}
 \usepackage{ifthen}
 \usepackage{changepage}
-\usepackage{ifoddpage}
 \usepackage{pgfplots}
 \usepackage{sectsty}
 \usepackage{tikz,xcolor,mwe}
+\usepackage{booktabs,xcolor,siunitx}
 
 \usetikzlibrary{arrows,
 		calc,
@@ -27,17 +28,21 @@
 \definecolor{cvgreen}{HTML}{92D14F}
 \definecolor{cvgray}{HTML}{D8E4BE}
 \definecolor{cvtext}{HTML}{000000}
+\definecolor{cvtabt}{HTML}{e5e2cc}
+
+\definecolor{lightgray}{gray}{0.9}
 
 \pgfplotsset{compat=1.9}
 
 \include{docs/bookcover}
 \include{docs/topbottom}
 \include{docs/legende}
-
+  
 \begin{document}
 \titelpage
 \tableofcontents
 \listoftables
+\listoffigures
 
 \include{docs/vorwort}
 \include{docs/grundlageninformatik}

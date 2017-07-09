@@ -9,7 +9,7 @@
           \raisebox{20pt}{{\large \chaptertitlename}} \raisebox{-12pt}{\chapternumberfont \thechapter}};
         \end{textblock*}};
         \path let \p1 = (current page.west), \p2 = (current page.east) in
-              node[minimum width=\x2-\x1, minimum height=-2.8in, rectangle, fill=cyan!50, anchor=south west, align=left, text width=\x2-\x1] at ($(current page.south west)$) {\textcolor{black}{\Large{\thepage . \: \: de.scr.mathematik}}};
+              node[minimum width=\x2-\x1, minimum height=-2.8in, rectangle, fill=cyan!50, anchor=south west, align=left, text width=\x2-\x1] at ($(current page.south west)$) {\textcolor{black}{\Large{\thepage . \: \: de.sci.mathematik}}};
 \end{tikzpicture}}{-1.75in}{}[\vspace*{0.25in}]
 
 
@@ -67,3 +67,59 @@
      \fill[cyan](current page.south west) rectangle ($(current page.south east) - (0,-1.5cm)$);
 \end{tikzpicture}}{-1.75in}{}[\vspace*{0.25in}]
 
+
+
+
+
+\newcommand*\MyHeadBottom{%
+\makeatletter
+\strictpagecheck
+\ifoddpage\else
+\thispagestyle{empty}
+\begin{tikzpicture}[overlay, remember picture]
+\checkoddpage
+	\path let \p1 = (current page.west), \p2 = (current page.east) in
+        node[minimum width=\x2-1.5pt, minimum height=2cm,
+        rectangle, fill=cyan, anchor=north west, align=left, text width=\x2-\x1] at ($(current page.north west)$) {
+        \begin{textblock*}{5in}(\dimexpr\x2-4.0in,\dimexpr0.25\headheight-1cm)
+          \tikz \node [white,text width=2in, align=right, font=\sffamily] {{\normalsize Neuronale Netze }\\[10pt]
+                    \raisebox{20pt}{{\large \chaptertitlename}} \raisebox{-10pt}{\chapternumberfont \thechapter}};
+        \end{textblock*}};
+	\path let \p1 = (current page.west), \p2 = (current page.east) in
+	              node[minimum width=\x2-\x1, minimum height=1cm, rectangle, fill=cyan!50, anchor=south west, align=right, text width=\x2-\x1] at
+	        ($(current page.south west)$) {\textcolor{black}{\Large{\textbf{de.sci.mathematik \: \thepage . \: \:}}}};
+\end{tikzpicture}
+\fi
+\makeatother
+}
+
+\newenvironment{MyConsoleBox}[1]
+%BEGIN
+{%
+  \begingroup\setlength{\textwidth}{20cm}
+  \colorbox{lightgray}{%
+  \begin{tabular}{p{14.4cm}}
+  #1
+  \end{tabular}
+  }\endgroup
+}%
+%END
+{%
+}
+
+
+\newenvironment{MyTableBox}[1]
+%BEGIN
+{%
+  \begingroup\setlength{\textwidth}{20cm}
+  \colorbox{cvtabt}{%
+  \begin{tabular}{|p{4cm}|p{5cm}|p{4cm}|}
+  \hline
+  #1
+  \hline
+  \end{tabular}
+  }\endgroup
+}%
+%END
+{%
+}
