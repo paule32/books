@@ -1,0 +1,35 @@
+\newcommand\MyBookHeader{%
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\chaptername}
+\fancyhead[RO]{22}
+\fancyhead[C]{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[OR]{\thepage}
+\fancyfoot[EL]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+}
+
+\newcommand\MyBookFooter{%
+\begin{tcolorbox}[
+    width=4in,
+    arc=2mm,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    colback=yellow,
+    title={Seite | \thepage}
+    ]
+\end{tcolorbox}}
+
+\newtcolorbox{boxChapter}{enhanced,breakable,
+  check odd page,toggle left and right,arc=2mm,
+  sidebyside, sidebyside align=center,
+  coltitle=white,
+  colback=gray!8,colframe=gray,rightrule=12mm, colback=yellow!19,
+  overlay={%
+    \ifoddpage\coordinate (X) at ([xshift=16mm,yshift=-16mm]);
+         \else\coordinate (X) at ([xshift=6mm,yshift=-6mm]frame.north west);\fi
+    \node at (X) {\textcolor{white}{\textbf{\Large\thepage\\}}};
+}}
+
