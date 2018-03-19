@@ -1,66 +1,43 @@
-\documentclass[10pt]{book}
-\usepackage[utf8]{inputenc}
-\usepackage{geometry}
-\usepackage{ngerman}
-\usepackage[right]{eurosym}
-\usepackage{titlesec}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{flowfram}
-\usepackage{tikz}
-\usepackage{textpos}
-\usepackage{calc}
-\usepackage{amsmath, amssymb}
-\usepackage{lastpage}
-\usepackage{float}
-\usepackage{ifthen}
-\usepackage{changepage}
-\usepackage{pgfplots}
-\usepackage{sectsty}
-\usepackage{tikz,xcolor,mwe}
-\usepackage{booktabs,xcolor,siunitx}
+\documentclass[10pt]{scrbook}
+\include{docs/packages}         % LaTeX Packages
+\include{docs/farben}           % verwendete Farben
+\include{docs/bookstyle}        % aussehen des Buches
 
-\usetikzlibrary{arrows,
-		calc,
-		shadows,
-		decorations.markings}
-
-\definecolor{cvgreen}{HTML}{92D14F}
-\definecolor{cvgray}{HTML}{D8E4BE}
-\definecolor{cvtext}{HTML}{000000}
-\definecolor{cvtabt}{HTML}{e5e2cc}
-
-\definecolor{lightgray}{gray}{0.9}
-
-\pgfplotsset{compat=1.9}
-
-\setlength{\parindent}{0em} 
+\addtocontents{toc}{~\hfill\textbf{Seite}\par}
+\begin{document}
 
 \include{docs/bookcover}
-\include{docs/topbottom}
-\include{docs/legende}
-  
-\begin{document}
-\titelpage
+%
+\newpage
+\newsection{Inhaltsverzeichnis}
 \tableofcontents
-\listoftables
-\listoffigures
+%
+\chapter{Lap1}
+\newsection{Lap1}
+ssss
+
+\section{ffwfwfe}
+asasd
+
+\chapter{Lap2}
+\newsection{Lap2}
+\section{ffwfwfe}
 
 \include{docs/vorwort}
 
-\include{docs/mathe/klasse1/uebungen1}
-\include{docs/mathe/klasse1/uebungen}
+%\include{docs/mathe/klasse1/uebungen1}
+%\include{docs/mathe/klasse1/uebungen}
 
-\include{docs/grundlageninformatik}
-\include{docs/zahlensysteme}
-\include{docs/zahlenbereiche}
-\include{docs/mengen}
-\include{docs/funktionen}
+% \include{docs/grundlageninformatik}
+% \include{docs/zahlensysteme}
+% \include{docs/zahlenbereiche}
+% \include{docs/mengen}
+% \include{docs/funktionen}
 
-\include{docs/neuronalenetze}
+%\include{docs/neuronalenetze}
 
-\include{docs/formelsammlung}
-\include{docs/matheformeln}
+%\ include{docs/formelsammlung}
+%\ include{docs/matheformeln}
 
 \include{docs/anhang}
 

@@ -1,0 +1,103 @@
+%% ---------------------------------------------------------------------------
+%% Für das Zeichnen der unterschiedlichen Sektionen, Kapitel ...
+%%
+%% Datei:   bookstyle.tex
+%%
+%% Datum:   18.03.2018
+%%
+%% Author:  paule32 - J. Kallup
+%%
+%% Lizenz;  MIT
+%%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------
+% Eine Sektion kann ein Kapitel oder auch Untergrupp(en) sein,
+% es wird eine Neue Seite erstellt und sämtliche Informationen
+% werden gelöscht. Informationen über die aktuelle Seite
+% werden mit \WennSektion automatisch gesetzt ...
+%----------------------------------------------------------------
+\newcommand{\sectiontitle}{}
+\newcommand{\newsection}[1]{%
+\section*{}\renewcommand{\sectiontitle}{#1}}
+
+\setlength{\parindent}{0em}   % kein Absatz-Einzug
+
+% nummerierte Kapitel:
+\renewcommand{\chaptermark}[1]{%
+\markboth{\chapapp\ \thechapter\autodot}{#1}}
+
+% Kopfzeile
+\newcommand{\MyStyleBook}[2]{%
+  \thispagestyle{empty}
+  \begin{tikzpicture}[overlay, remember picture]
+    % Header
+    \fill[cyan]   (-15.2, 3.0)
+    rectangle     ( 5.99, 0.2); % Hintergrund
+    \fill[orange] (-15.2, 3.0)
+    rectangle     ( 5.99, 2.6); % Stripe
+    %
+    \draw [black] (#2, 1.0) node {\Huge{\textbf{#1}}};
+    %
+    \draw [yellow] (4, 1.2) node { % römische Ziffern für
+        \pagenumbering{Roman}      % die Beschriftung
+        \Huge{
+        \textbf{
+        \thepage}}
+        \pagenumbering{arabic}     % arabische Ziffern 0-9
+    };
+    % Footer
+    \fill[cyan] (-15.2, -25.8 ) rectangle   (  5.99, -27.2 );
+    %
+    \draw [black] (-12.2, -26.25) node {\Large{\textbf{de.sci.mathematik}}};
+    %
+    \fill[orange] (-15.2, -26.99 ) rectangle   (  5.99, -26.71 );
+        \draw [yellow] (4, -26.25) node { % römische Ziffern für
+        \pagenumbering{Roman}      % die Beschriftung
+        \Large{\textbf{
+        \thepage}}
+        \pagenumbering{arabic}};   % arabische Ziffern 0-9
+  \end{tikzpicture}
+}%
+
+%-----------------------------------------------
+% if Abfragen für Header/Footer Layout ...
+%-----------------------------------------------
+\newcommand{\WennSektion}[2]{
+  \IfStrEq{\sectiontitle}{#1}{        % wenn true, dann ...
+    \ifthispageodd{                    % wenn Seite nicht gerade, dann ...
+      \MyStyleBook{#1}{#2}            % Arg1: Name, Arg2: PositionTuning
+    }{                                % ansonsten gerade, dann ...
+    i am gerade
+    }
+  }{}                          % wenn false, dann nix
+}
+%---------------------
+\def\chopline#1;#2 \\{
+  \def\name{#1}
+  \def\position{#2}
+}
+\newif\ifmore \moretrue
+%--------------------------
+\newcommand{\MyReadTopics}{%
+\newread\quelle
+\openin\quelle=helpfile.tmp
+\loop
+  \read\quelle to \zeile
+  \ifeof\quelle
+    \global\morefalse
+  \else
+    \expandafter\chopline\zeile\\
+    {\name}{\position}              % <-- hier header/footer ??
+  \fi
+\ifmore\repeat
+\closein\quelle
+}
+%------------------------------
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\setkomafont{pagehead}{\small}
+\ohead[\MyReadTopics]{}
+
+% Fußzeile
+\ofoot[\pagemark]{\pagemark}
+
